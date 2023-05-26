@@ -12,7 +12,7 @@ public class miniFriends : MonoBehaviour
 
     [SerializeField] private Main main;
 
-    [SerializeField] private GameObject miniFriend;
+    
 
 
     void Start()
@@ -36,11 +36,7 @@ public class miniFriends : MonoBehaviour
         
     }
 
-    public void miniFriendSetActive()
-    {
-        miniFriend.SetActive(true);
 
-    }
 
 
 
