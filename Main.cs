@@ -5,25 +5,34 @@ using TMPro;
 
 public class Main : MonoBehaviour
 {
-    [SerializeField] private float baseHealth = 15;
+
+    [Header("Health")]
+    [SerializeField] private float baseHealth;
     [SerializeField] private float currentHealth;
     [SerializeField] private float health_Plus_State = 10; // random
 
-    [SerializeField] private float damage = 10;
- 
 
+    [Header("Damage")]
+    [SerializeField] private float damage = 10;
+
+    [Header("Text")]
     [SerializeField] private TMP_Text textState;
     [SerializeField] private TMP_Text textMoney;
+    [SerializeField] private TMP_Text textHealth;
 
-    public HealthBar healthBar;
 
+    [Header ("Object")]
     [SerializeField] private GameObject player;
-
     [SerializeField] private GameObject hitParticule;
 
+    [Header("Animator")]
     [SerializeField] private Animator anim;
 
+    [Header("Sprite")]
+    [SerializeField] private Sprite [] spriteRenderer;
 
+    [Header("Scripts")]
+    public HealthBar healthBar;
 
     void Start()
     {
@@ -54,6 +63,7 @@ public class Main : MonoBehaviour
             stateFinish();
         }
 
+        textHealth.text = currentHealth.ToString(); 
         textState.text = "State: " + PlayerPrefs.GetInt("State").ToString();
         textMoney.text = PlayerPrefs.GetInt("Money").ToString();
     }
@@ -62,11 +72,15 @@ public class Main : MonoBehaviour
     {
         PlayerPrefs.SetInt("State", PlayerPrefs.GetInt("State") + 1); //  state = state + 1;
         heal_fulling();
+        ChangeSprite();
     }
 
     private void heal_fulling()
     {
-        currentHealth = baseHealth + (health_Plus_State * (PlayerPrefs.GetInt("State") +1) );
+      //  currentHealth = baseHealth + (Random.Range(5, 10) * (PlayerPrefs.GetInt("State") + 1));
+
+        currentHealth = baseHealth + (health_Plus_State * (PlayerPrefs.GetInt("State")) );
+        
         healthBar.SetMaxHealth(currentHealth);
     }
 
@@ -85,4 +99,8 @@ public class Main : MonoBehaviour
     }
 
 
+    private void ChangeSprite()
+    {
+        GetComponent<SpriteRenderer>().sprite = spriteRenderer[Random.Range(0, spriteRenderer.Length)];
+    }
 }

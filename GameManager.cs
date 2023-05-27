@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject miniFriend1;
 
+    [Header("Friend_1")]
+    [SerializeField] private GameObject miniFriend1;
     [SerializeField] private Button FriendActive;
     [SerializeField] private Button FriendUpgrade;
 
@@ -37,7 +38,6 @@ public class GameManager : MonoBehaviour
     {
         miniFriend1.SetActive(true);
         PlayerPrefs.SetInt("Friend_1", 1);
-       // PlayerPrefs.SetInt("Friend_1_Button", 1);
 
     }
 
@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.GetInt("Friend_1") > 0)
         {
             miniFriend1.SetActive(true);
-            //Destroy(FriendActive.gameObject);  
             FriendActive.gameObject.SetActive(false);
 
         }

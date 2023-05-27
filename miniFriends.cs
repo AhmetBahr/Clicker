@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class miniFriends : MonoBehaviour
 {
+
+    [Header("Damage")]
     [SerializeField] private float damage;
     [SerializeField] private float damageUpgrade;
 
+    [Header("Time")]
     [SerializeField] private float time = 0;
     [SerializeField] private float Countdown = 5;
 
+    [Header("Scripts")]
     [SerializeField] private Main main;
 
     
