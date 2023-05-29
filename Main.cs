@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Main : MonoBehaviour
 {
+    [Header("Core")]
+    [SerializeField] private Button attackBt;
 
     [Header("Health")]
     [SerializeField] private float baseHealth;
@@ -46,8 +49,28 @@ public class Main : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+
+        Controller();
+
+
+    }
+
+    private void Controller()
+    {
+
+        if (currentHealth <= 0)
         {
+            stateFinish();
+        }
+
+        textHealth.text = currentHealth.ToString();
+        textState.text = "State: " + PlayerPrefs.GetInt("State").ToString();
+        textMoney.text = PlayerPrefs.GetInt("Money").ToString();
+    }
+
+    public void Attack()
+    {
+
             TakeDamage(damage);
 
             Instantiate(hitParticule, player.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
@@ -55,17 +78,8 @@ public class Main : MonoBehaviour
             //To Do sound
             DamageAnimation();
 
-            
-        }
 
-        if(currentHealth <= 0)
-        {
-            stateFinish();
-        }
-
-        textHealth.text = currentHealth.ToString(); 
-        textState.text = "State: " + PlayerPrefs.GetInt("State").ToString();
-        textMoney.text = PlayerPrefs.GetInt("Money").ToString();
+        
     }
 
     private void stateFinish()
