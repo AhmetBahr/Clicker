@@ -1,5 +1,7 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +9,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
-
+    [Header("Canvas")]
+    [SerializeField] public RectTransform MargetPanel;
 
     [Header("Friend_1")]
     [SerializeField] private GameObject miniFriend_1;
@@ -21,11 +24,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button FriendUpgrade_2;
     [SerializeField] private float price_2;
 
+    [Header("Screen")]
+    [SerializeField] private GameObject popupPanel;
+
+
 
 
     private void Update()
     {
         miniFriend_Controll();
+        
     }
 
 
@@ -71,5 +79,26 @@ public class GameManager : MonoBehaviour
 
         }
 
+    }
+
+    public void ShopOppen()
+    {
+        MargetPanel.DOAnchorPos(new Vector2(0, 235), 0.5f);
+        
+    }
+    public void ShopClose()
+    {
+        MargetPanel.DOAnchorPos(new Vector2(0, -300), 0.5f);
+    }
+
+
+
+    public void PopupActive()
+    {
+        popupPanel.SetActive(true);
+    }
+    public void PopupDeactive()
+    {
+        popupPanel.SetActive(false);
     }
 }

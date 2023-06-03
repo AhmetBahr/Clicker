@@ -21,7 +21,7 @@ public class miniFriends : MonoBehaviour
 
     void Start()
     {
-        main = GameObject.Find("Player").GetComponent<Main>();
+        main = GameObject.Find("Player_Enemy").GetComponent<Main>();
             
     }
 
